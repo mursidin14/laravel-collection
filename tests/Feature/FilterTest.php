@@ -39,4 +39,13 @@ class FilterTest extends TestCase
         $this->assertEquals(['Ajang' => 100, 'Toni' => 90], $result1->all());
         $this->assertEquals(['Ari' => 80], $result2->all());
     }
+
+    public function testTesting()
+    {
+        $collection = collect(['toni', 'arif', 'halim']);
+        self::assertTrue($collection->contains('toni'));
+        self::assertTrue($collection->contains(function ($value, $key) {
+            return $value == 'arif';
+        }));
+    }
 }
