@@ -23,4 +23,20 @@ class FilterTest extends TestCase
             'Toni' => 90
         ], $result->all());
     }
+
+    // partition example
+    public function testPartition()
+    {
+        $collection = collect([
+            'Ajang' => 100,
+            'Ari' => 80,
+            'Toni' => 90
+        ]);
+        [$result1, $result2] = $collection->partition(function ($item, $key) {
+            return $item >= 90;
+        });
+
+        $this->assertEquals(['Ajang' => 100, 'Toni' => 90], $result1->all());
+        $this->assertEquals(['Ari' => 80], $result2->all());
+    }
 }
