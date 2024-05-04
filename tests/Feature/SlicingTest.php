@@ -136,4 +136,13 @@ class SlicingTest extends TestCase
         $result = $collection->min();
         $this->assertEquals(1, $result);
     }
+
+    public function testReduce()
+    {
+        $collection = collect([1, 2, 3, 4, 5]);
+        $result = $collection->reduce(function($cary, $item) {
+            return $cary + $item;
+        });
+        $this->assertEquals(15, $result);
+    }
 }
