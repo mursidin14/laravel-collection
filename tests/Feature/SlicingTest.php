@@ -55,4 +55,14 @@ class SlicingTest extends TestCase
 
     }
 
+    public function testChunk()
+    {
+        $collection = collect([1, 2, 3, 4, 5, 6]);
+        $result = $collection->chunk(3);
+
+        $this->assertEqualsCanonicalizing([1, 2, 3], $result->all()[0]->all());
+        $this->assertEqualsCanonicalizing([4, 5, 6], $result->all()[1]->all());
+
+    }
+
 }
