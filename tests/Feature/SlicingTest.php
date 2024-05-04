@@ -89,4 +89,14 @@ class SlicingTest extends TestCase
         $this->assertEquals(5, $result);
     }
 
+    public function testRandom()
+    {
+        $collection = collect([1, 2, 3, 4]);
+        $result = $collection->random();
+        self::assertTrue(in_array($result, [1, 2, 3, 4]));
+
+        $result = $collection->random(4);
+        $this->assertEqualsCanonicalizing([1, 2, 3, 4], $result->all());
+    }
+
 }
