@@ -99,4 +99,15 @@ class SlicingTest extends TestCase
         $this->assertEqualsCanonicalizing([1, 2, 3, 4], $result->all());
     }
 
+    public function testCheckingExistence()
+    {
+        $collection = collect([1, 2, 3, 4, 5]);
+        self::assertTrue($collection->isNotEmpty());
+        self::assertFalse($collection->isEmpty());
+        self::assertTrue($collection->contains(4));
+        self::assertFalse($collection->contains(6));
+        self::assertTrue($collection->contains(function($value, $key) {
+            return $value == 4;
+        }));
+    }
 }
