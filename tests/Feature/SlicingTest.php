@@ -110,4 +110,14 @@ class SlicingTest extends TestCase
             return $value == 4;
         }));
     }
+
+    public function testOrdering()
+    {
+        $collection = collect([1, 2, 3, 4, 5]);
+        $result = $collection->sort();
+        $this->assertEqualsCanonicalizing([1, 2, 3, 4, 5], $result->all());
+
+        $result = $collection->sortDesc();
+        $this->assertEqualsCanonicalizing([5, 4, 3, 2, 1], $result->all());
+    }
 }
