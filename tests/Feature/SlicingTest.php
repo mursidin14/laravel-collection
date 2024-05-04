@@ -120,4 +120,20 @@ class SlicingTest extends TestCase
         $result = $collection->sortDesc();
         $this->assertEqualsCanonicalizing([5, 4, 3, 2, 1], $result->all());
     }
+
+    public function testAggregate()
+    {
+        $collection = collect([1, 2, 3, 4, 5]);
+        $result = $collection->sum();
+        $this->assertEquals(15, $result);
+
+        $result = $collection->average();
+        $this->assertEquals(3, $result);
+
+        $result = $collection->max();
+        $this->assertEquals(5, $result);
+
+        $result = $collection->min();
+        $this->assertEquals(1, $result);
+    }
 }
