@@ -65,4 +65,28 @@ class SlicingTest extends TestCase
 
     }
 
+    public function testFirst()
+    {
+        $collection = collect([1, 2, 3, 4, 5]);
+        $result = $collection->first();
+        $this->assertEquals(1, $result);
+
+        $result = $collection->first(function($value, $key) {
+            return $value > 4;
+        });
+        $this->assertEquals(5, $result);
+    }
+
+    public function testLast()
+    {
+        $collection = collect([1, 2, 3, 4, 5]);
+        $result = $collection->last();
+        $this->assertEquals(5, $result);
+
+        $result = $collection->last(function($value, $key) {
+            return $value > 3;
+        });
+        $this->assertEquals(5, $result);
+    }
+
 }
